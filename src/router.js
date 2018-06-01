@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
 import Test from './views/Test.vue'
-import Test from './views/Snake.vue'
+import Snake from './views/Snake.vue'
 
 Vue.use(Router)
 
