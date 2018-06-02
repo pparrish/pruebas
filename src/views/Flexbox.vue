@@ -7,6 +7,7 @@
         <div class="home">Home</div>
         <div class="search">Search</div>
         <div class="logout">Logout</div>
+        <div class="profile">profile</div>
       </nav>
     </div>
   </div>
@@ -20,6 +21,8 @@
     background: black;
   }
   .container {
+    min-height: 20rem;
+    width: 100%;
     border: 5px solid #ffcc5c;
     /*Con esto podemos comenzar a crear una caja flex*/
     display: flex;
@@ -43,9 +46,18 @@
     color: white;
     padding: 1rem;
   }
-  .home {}
-  .search {
-    margin-right: auto;
+  .container > div {
+    /*Existen 3 propiedades basicas de flex en los elementos dentro de la caja flex, de los cuales flex es una abreviacion
+    flex-grow flex-shink flex-basis*/
+    flex: 1;
   }
-  .logout {}
+  .home {}
+  /*Cuidadin aqui, no se puede poner solo .search por que el selector .container > div es más especifico y por lo tanto no computa la propiedad*/
+  /*Cuando solo hay un elemento que tenga la propiedad flex, solo este crecerá automaticamente con la pagina*/
+  .container > .search {
+    flex: 2;
+  }
+
+  .logout {
+  }
 </style>
