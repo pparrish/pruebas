@@ -4,9 +4,9 @@
     <h2>Abajo todo lo que he probado con flexbox</h2>
     <div id="main">
       <nav class="container">
-        <div>Home</div>
-        <div>Search</div>
-        <div>Logout</div>
+        <div class="home">Home</div>
+        <div class="search">Search</div>
+        <div class="logout">Logout</div>
       </nav>
     </div>
   </div>
@@ -43,4 +43,9 @@
     color: white;
     padding: 1rem;
   }
+  .home {}
+  .search {
+    margin-right: auto;
+  }
+  .logout {}
 </style>
