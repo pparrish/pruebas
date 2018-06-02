@@ -8,7 +8,9 @@
       <div>
         <label>latitude: <input v-model="colecToEdit.latitude" type="text"></label>
         <label>Longitude: <input v-model="colecToEdit.longitude" type="text"></label>
-        <label>Date: <input type="text"></label>
+        <label>Day <input type="text"></label>
+        <label>month: <input type="text"></label>
+        <label>year: <input type="text"></label>
         <button @click="newRegister">Nueva Colecta</button>
       </div>
       <!-- Colected table -->
