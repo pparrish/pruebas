@@ -36,7 +36,13 @@
     methods: {
       newRegister(){
         console.log("Registrando datos")
-        // this.$store.commit('newColecte','otra colecta')
+        this.startRegister()
+        fetch(`http://api.geonames.org/findNearbyJSON?lat=${this.colecToEdit.latitude}&lng=${this.colecToEdit.latitude}&username=parrish&featureClass=v`, { method: 'GET' })
+          .then(function(response){
+            return response.json()
+          }).then(function(j) {
+            console.log(j)
+          })
         this.$store.dispatch('newColecte', this.colecToEdit)
       },
       startRegister(){
@@ -46,7 +52,6 @@
               this.colecToEdit.longitude = position.coords.longitude
           }, ()=> {
             this.colecToEdit.error ='No hay localizacion'
-          
           },
           { maximumAge: 1500000, timeout: 750000, enableHighAccuracy: true}
           );
@@ -57,9 +62,9 @@
       }
     },
     computed: {
-    colectes () {
-      return this.$store.state.colectes
+      colectes () {
+        return this.$store.state.colectes
+      }
     }
-  }
   }
 </script>
