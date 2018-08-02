@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/test">test</router-link> |
-      <router-link to="/Snake">Snake</router-link> |
-      <router-link to="/Flexbox">Flexbox Course</router-link>
+      <router-link to="/">Home</router-link> | 
+      <router-link to="/about">About</router-link> | 
+      <router-link to="/test">test</router-link> | 
+      <router-link to="/Snake">Snake</router-link> | 
+      <router-link to="/Flexbox">Flexbox Course</router-link> | 
+      <router-link to="/vue-course">Vuejs course by Vuemastery</router-link>
     </div>
     <router-view/>
   </div>

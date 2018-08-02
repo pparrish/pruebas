@@ -5,6 +5,7 @@ import About from './views/About.vue'
 import Test from './views/Test.vue'
 import Snake from './views/Snake.vue'
 import Flexbox from './views/Flexbox.vue'
+import VueCourse from './views/VueCourse'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/Flexbox',
       name: 'Flexbox',
       component: Flexbox
+    },
+    {
+      path: '/vue-course',
+      name: 'VueCourse',
+      component: VueCourse
     }
   ]
 })
