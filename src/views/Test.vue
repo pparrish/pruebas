@@ -15,7 +15,7 @@
       </div>
       <!-- Colected table -->
       <div>
-        <p v-for="colec in colectes" >{{colec}}</p>
+        <p v-for="(colec,index) in colectes" :key="index">{{colec}}</p>
       </div>
     </div>
   </div>
