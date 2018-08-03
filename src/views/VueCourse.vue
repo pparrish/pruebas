@@ -32,8 +32,13 @@
                 <p v-else-if="almostStock">Run, low stock!!</p>
                 <p v-else>Out of stock</p>
                 <div id="cart-section">
-                    <button @click="addToCart" >Add to card!! <span v-if="productsOnCart">({{cart}})</span></button>
-                    <button @click="removeFromCart" v-show="cart > 0" class="button button-outline" >Remove from Cart :,( </button>
+                    <button
+                        @click="addToCart"
+                        :disabled="card == stock" > Add to card!! <span v-if="productsOnCart">({{cart}})</span></button>
+                    <button
+                        @click="removeFromCart"
+                        v-show="cart > 0"
+                        class="button button-outline" >Remove from Cart :,( </button>
                 </div>
             </div>
 
