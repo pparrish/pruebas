@@ -20,7 +20,11 @@
             
             <h2>Variants</h2>
             <ul>
-                <li v-for="variant in variants" :key="variant.id">{{variant.color}}</li>
+                <li
+                    v-for="variant in variants"
+                    :key="variant.id"
+                    class="variant-element"
+                    :style="{ backgroundColor : variant.color }" >{{variant.color}}</li>
             </ul>
             
             <h2>Sizes</h2>
@@ -34,7 +38,8 @@
                 <div id="cart-section">
                     <button
                         @click="addToCart"
-                        :disabled="cart == stock" > Add to card!! <span v-if="productsOnCart">({{cart}})</span></button>
+                        :disabled="cart == stock || stock == 0" 
+                        :style=" {'text-decoration': stock != 0 ? '' : 'line-through' }" > Add to card!! <span v-if="productsOnCart">({{cart}})</span></button>
                     <button
                         @click="removeFromCart"
                         v-show="cart > 0"
@@ -62,7 +67,7 @@ export default {
             description: "This incredible shoes make you look glamorous and add the capacity to fly, only for 30ns.",                 
             image: shoesImage,
             top: "top",
-            stock: 10,
+            stock: 0,
             onSale: true,
             details: ["80% cotton", "10% poliester", "5% magic", "5% love", "Gender-neutral"],
             variants: [
@@ -135,5 +140,13 @@ export default {
 #to-top-link {
     text-align: right;
     font-size: 1.2rem;
+}
+li {
+    list-style-type: none;
+}
+.variant-element {
+    padding: .5rem;
+    color: white;
+    max-width: 60%;
 }
 </style>
