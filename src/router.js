@@ -41,5 +41,6 @@ export default new Router({
       name: 'VueCourse',
       component: VueCourse
     }
-  ]
+  ],
+  mode: 'history'
 })

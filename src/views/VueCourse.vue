@@ -56,7 +56,6 @@
 
 <script>
 /*  TODO: Make a changue of image with a mouseover in color variant (reason, need images)
-    TODO: Fix the anchor to top problem chek this <router-link to="#scroll" @click.native="scrollFix('#scroll')">Scroll</router-link>
 */
 import shoesImage from '../assets/shoes.jpg'
 export default {
