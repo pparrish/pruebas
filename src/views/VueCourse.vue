@@ -8,15 +8,31 @@
         </div>
         <div class="product-description">
             <a :name="top" />
+            
             <h1>{{product}}</h1>
             <p>{{description}}</p>
+            
+            <h2>Details</h2>
+            <ul>
+                <li v-for="(detail, index) in details" :key="index">{{detail}}</li>
+            </ul>
+            
+            <h2>Variants</h2>
+            <ul>
+                <li v-for="variant in variants" :key="variant.id">{{variant.color}}</li>
+            </ul>
+            
+            <h2>Sizes</h2>
+            <p><span v-for="(size, index) in sizes" :key="index">{{size}}<span v-if="index != sizes.length -1">,</span> </span> </p>
+
             <div v-if="onSale">
                 <h6>On sale!!!</h6>
                 <p v-if="higthStock" >In Stock</p>
                 <p v-else-if="almostStock">Run, low stock!!</p>
                 <p v-else>Out of stock</p>
-                <a :href=" '#' + top">Top</a>
             </div>
+
+            <a :href=" '#' + top">Top</a>
         </div>
     </div>
 </div>
@@ -33,7 +49,23 @@ export default {
             image: shoesImage,
             top: "top",
             stock: 10,
-            onSale: true
+            onSale: true,
+            details: ["80% cotton", "10% poliester", "5% magic", "5% love", "Gender-neutral"],
+            variants: [
+                {
+                    id: "1",
+                    color: "blue"
+                },
+                {
+                    id: "2",
+                    color: "Green"
+                },
+                {
+                    id: "3",
+                    color: "red"
+                }
+            ],
+            sizes: ["XS","S","M","B","XB","XXXXXB"]
         }
     },
     computed: {
@@ -52,14 +84,16 @@ export default {
     display: flex;
 }
 .product-visualization {
+    padding-top: 2.2rem;
     flex: 4;
 }
 .product-description {
     flex: 8;
+    text-align: left;
+    padding: 1rem;
     
 }
 #product-image {
     width: 100%;
-    height: 100%;
 }
 </style>
