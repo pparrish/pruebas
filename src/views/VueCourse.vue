@@ -5,6 +5,7 @@
         
         <div class="product-visualization">
             <img :src="image" :alt="product" id="product-image">
+            <p><b>Stock:</b> {{stock}}</p>
         </div>
         <div class="product-description">
             <a :name="top" />
@@ -30,6 +31,10 @@
                 <p v-if="higthStock" >In Stock</p>
                 <p v-else-if="almostStock">Run, low stock!!</p>
                 <p v-else>Out of stock</p>
+                <div id="cart-section">
+                    <button @click="addToCart" >Add to card!! <span v-if="productsOnCart">({{cart}})</span></button>
+                    <button @click="removeFromCart" v-show="cart > 0" class="button button-outline" >Remove from Cart :,( </button>
+                </div>
             </div>
 
             <a :href=" '#' + top">Top</a>
@@ -39,6 +44,7 @@
 </template>
 
 <script>
+/* TODO: Make a changue of image with a mouseover in color variant (reason, need images) */
 import shoesImage from '../assets/shoes.jpg'
 export default {
     name:"vue-course",
@@ -65,8 +71,10 @@ export default {
                     color: "red"
                 }
             ],
-            sizes: ["XS","S","M","B","XB","XXXXXB"]
+            sizes: ["XS","S","M","B","XB","XXXXXB"],
+            cart: 0,
         }
+        
     },
     computed: {
         higthStock: function(){
@@ -74,6 +82,17 @@ export default {
         },
         almostStock: function () {
             return this.stock <= 10 && this.stock > 0
+        },
+        productsOnCart() {
+            return this.cart > 0
+        }
+    },
+    methods: {
+        addToCart() {
+            if(this.cart < this.stock ) this.cart ++
+        },
+        removeFromCart() {
+            if(this.cart > 0 ) this.cart --
         }
     }
 }
@@ -96,4 +115,13 @@ export default {
 #product-image {
     width: 100%;
 }
+
+#cart-section {
+    display: flex;
+}
+
+#cart-section button {
+    margin-left: .5rem;
+}
+
 </style>
