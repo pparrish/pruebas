@@ -8,7 +8,7 @@
             <p><b>Stock:</b> {{stock}}</p>
         </div>
         <div class="product-description">
-            <a :name="top" />
+            <a :id="top" />
             
             <h1>{{product}}</h1>
             <p>{{description}}</p>
@@ -41,15 +41,18 @@
                         class="button button-outline" >Remove from Cart :,( </button>
                 </div>
             </div>
-
-            <a :href=" '#' + top">Top</a>
+            <div id="to-top-link">
+                <a :href=" '#' + top" >Top</a>
+            </div>
         </div>
     </div>
 </div>
 </template>
 
 <script>
-/* TODO: Make a changue of image with a mouseover in color variant (reason, need images) */
+/*  TODO: Make a changue of image with a mouseover in color variant (reason, need images)
+    TODO: Fix the anchor to top problem chek this <router-link to="#scroll" @click.native="scrollFix('#scroll')">Scroll</router-link>
+*/
 import shoesImage from '../assets/shoes.jpg'
 export default {
     name:"vue-course",
@@ -76,7 +79,7 @@ export default {
                     color: "red"
                 }
             ],
-            sizes: ["XS","S","M","B","XB","XXXXXB"],
+            sizes: ["XS","S","M","L","XL","XXXXXL"],
             cart: 0,
         }
         
@@ -104,6 +107,7 @@ export default {
 </script>
 
 <style scoped>
+
 .container {
     display: flex;
 }
@@ -114,7 +118,7 @@ export default {
 .product-description {
     flex: 8;
     text-align: left;
-    padding: 1rem;
+    padding: 1.5rem;
     
 }
 #product-image {
@@ -128,5 +132,8 @@ export default {
 #cart-section button {
     margin-left: .5rem;
 }
-
+#to-top-link {
+    text-align: right;
+    font-size: 1.2rem;
+}
 </style>
