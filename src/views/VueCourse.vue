@@ -34,7 +34,7 @@
                 <div id="cart-section">
                     <button
                         @click="addToCart"
-                        :disabled="card == stock" > Add to card!! <span v-if="productsOnCart">({{cart}})</span></button>
+                        :disabled="cart == stock" > Add to card!! <span v-if="productsOnCart">({{cart}})</span></button>
                     <button
                         @click="removeFromCart"
                         v-show="cart > 0"
