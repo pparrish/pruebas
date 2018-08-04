@@ -13,11 +13,8 @@
                 
                 <h1>{{title}}</h1>
                 <p>{{description}}</p>
-                
-                <h2>Details</h2>
-                <ul>
-                    <li v-for="(detail, index) in details" :key="index">{{detail}}</li>
-                </ul>
+
+                <product-details :details="details" />
                 
                 <h2>Variants</h2>
                 <ul>
@@ -69,6 +66,7 @@
 <script>
 /*  TODO: Make a changue of image with a mouseover in color variant (reason, need images)
 */
+import ProductDetails from '@/components/ProductDetails'
 import shoesImage from '../assets/shoes.jpg'
 
 export default {
@@ -131,6 +129,9 @@ export default {
         removeFromCart() {
             if(this.cart > 0 ) this.cart --
         }
+    },
+    components: {
+        ProductDetails
     }
 }
 </script>
