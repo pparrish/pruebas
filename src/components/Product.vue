@@ -3,14 +3,16 @@
         
         <div class="container" >
             
+
             <div class="product-visualization">
                 <img :src="image" :alt="product" id="product-image">
                 <p><b>Stock:</b> {{stock}}</p>
             </div>
 
             <div class="product-description">
+               
                 <a :id="top" />
-                
+
                 <h1>{{title}}</h1>
                 <p>{{description}}</p>
 
@@ -22,7 +24,23 @@
                         v-for="variant in variants"
                         :key="variant.id"
                         class="variant-element"
-                        :style="{ backgroundColor : variant.color }" >{{variant.color}}</li>
+                        :style="{ backgroundColor : variant.color }" >
+                            <label
+                                :for=" 'variant-' + variant.id " >
+                            
+                                <input
+                                    type="radio"
+                                    name="variant"
+                                    :id=" 'variant-' + variant.id "
+                                    :value="variant.id"
+                                    v-model="selectedVariant" >
+                                        
+                                {{variant.color}}
+
+                                <span v-if="variant.cart > 0 "> ({{ variant.cart }}) </span>
+
+                            </label>
+                    </li>
                 </ul>
                 
                 <h2>Sizes</h2>
@@ -76,6 +94,10 @@ export default {
             type: Boolean,
             required: false,
             default: false
+        },
+        id: {
+            type: Number,
+            required: true,
         }
     },
     data: function() {
@@ -85,30 +107,51 @@ export default {
             description: "This incredible shoes make you look glamorous and add the capacity to fly, only for 30ns.",                 
             image: shoesImage,
             top: "top",
-            stock: 0,
             onSale: true,
             details: ["80% cotton", "10% poliester", "5% magic", "5% love", "Gender-neutral"],
             variants: [
                 {
                     id: "1",
-                    color: "blue"
+                    color: "blue",
+                    cart: 0,
+                    stock: 10,
                 },
                 {
                     id: "2",
-                    color: "Green"
+                    color: "Green",
+                    cart: 0,
+                    stock: 100,
                 },
                 {
                     id: "3",
-                    color: "red"
+                    color: "red",
+                    cart: 0,
+                    stock: 5,
                 }
             ],
             sizes: ["XS","S","M","L","XL","XXXXXL"],
-            cart: 0,
-            shipping: 2.99
+            shipping: 2.99,
+            selectedVariant: "1"
         }
         
     },
     computed: {
+        stock:{ 
+            get() {
+            return this.variants[ this.selectedVariant - 1 ].stock
+            },
+            set(newValue) {
+                this.variants[ this.selectedVariant - 1 ].stock = newValue
+            }
+        },
+        cart: {
+            get() {
+                return this.variants[ this.selectedVariant - 1 ].cart
+            },
+            set(newValue) {
+                this.variants[ this.selectedVariant - 1 ].cart = newValue
+            }
+        },
         higthStock: function(){
             return this.stock > 10
         },
@@ -124,10 +167,22 @@ export default {
     },
     methods: {
         addToCart() {
-            if(this.cart < this.stock ) this.cart ++
+            if(this.cart < this.stock ) {
+                this.cart ++
+                this.$emit('add-to-cart', {
+                                            id : this.id,
+                                            variantId : this.selectedVariant 
+                                        })
+            }
         },
         removeFromCart() {
-            if(this.cart > 0 ) this.cart --
+            if(this.cart > 0 ) {
+                this.cart --
+                this.$emit('remove-from-cart', {
+                                            id : this.id,
+                                            variantId : this.selectedVariant
+                                        })
+            }
         }
     },
     components: {
