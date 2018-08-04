@@ -10,7 +10,7 @@
         <div class="product-description">
             <a :id="top" />
             
-            <h1>{{product}}</h1>
+            <h1>{{title}}</h1>
             <p>{{description}}</p>
             
             <h2>Details</h2>
@@ -62,6 +62,7 @@ export default {
     name:"vue-course",
     data: function() {
         return {
+            brand: "Parrish inc ",
             product: "The incredible shoes",
             description: "This incredible shoes make you look glamorous and add the capacity to fly, only for 30ns.",                 
             image: shoesImage,
@@ -97,6 +98,9 @@ export default {
         },
         productsOnCart() {
             return this.cart > 0
+        },
+        title() {
+            return  `${this.brand} - ${this.product}`
         }
     },
     methods: {
