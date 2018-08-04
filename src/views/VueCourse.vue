@@ -1,7 +1,8 @@
 <template>
     <div>
-        <product />
-        <product />
+        <h4 v-if="user.premium">YOU ARE PREMIUM!!! ENJOY.</h4>
+        <product :premium="user.premium" />
+        <product :premium="user.premium" />
         <product />
     </div>
 </template>
@@ -12,8 +13,12 @@
 
     export default {
         name: 'vue-course',
-        data(){ return {
-                user: {}
+        data(){ 
+            return {
+            user:
+                {
+                    premium: true
+                }
             } 
         },
         components: {

@@ -31,7 +31,13 @@
                 <h2>Sizes</h2>
                 <p><span v-for="(size, index) in sizes" :key="index">{{size}}<span v-if="index != sizes.length -1">,</span> </span> </p>
 
+
                 <div v-if="onSale">
+
+                    <p>Shipping:
+                        <span v-if="premium">Free for premium users!!</span>
+                        <span v-else> ${{shipping}} </span>
+                    </p>
 
                     <h6>On sale!!!</h6>
                     <p v-if="higthStock" >In Stock</p>
@@ -67,6 +73,13 @@ import shoesImage from '../assets/shoes.jpg'
 
 export default {
     name:"product",
+    props: {
+        premium: {
+            type: Boolean,
+            required: false,
+            default: false
+        }
+    },
     data: function() {
         return {
             brand: "Parrish inc ",
@@ -93,6 +106,7 @@ export default {
             ],
             sizes: ["XS","S","M","L","XL","XXXXXL"],
             cart: 0,
+            shipping: 2.99
         }
         
     },
