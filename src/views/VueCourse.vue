@@ -6,25 +6,9 @@
             :premium="user.premium"
             :id="1"
             @add-to-cart="addToCart"
-            @remove-from-cart="removeFromCart" />
-            
-        <div class="reviews">
-            <h3>Reviews</h3>
-            <p v-show="!reviews.length">There no are review yet!!</p> 
-            <div v-for="(review, index) in reviews" :key="index" class="a-review">
-                <div>
-                    <h6>{{review.name}}</h6>
-                    Rating: <span>{{review.rating}}</span>
-                </div>
-                <hr>
-                <p>{{review.review}}</p>
-            </div>
-        </div>
+            @remove-from-cart="removeFromCart" ></product>
 
-        <div> 
-            <h4>Add your review</h4>   
-            <product-review @review-submitted="addReview"/>
-        </div>
+        <product-tabs :reviews="reviews"></product-tabs>
 
     </div>
 </template>
@@ -33,6 +17,8 @@
     
     import Product from '@/components/Product'
     import ProductReview from '@/components/ProductReview'
+    import ProductTabs from "@/components/productTabs";
+    import EventBus from "@/EventBus";
 
     export default {
         name: 'vue-course',
@@ -61,11 +47,14 @@
                     return true
                 }) 
             },
-            addReview( productReview ) {
+        },
+        mounted(){
+            EventBus.$on('review-submitted', productReview => {
                 this.reviews.push(productReview )
-            }
+            })
         },
         components: {
+            ProductTabs,
             Product,
             ProductReview
         }
@@ -73,17 +62,5 @@
 </script>
 
 <style scoped>
-    .reviews {
-        text-align: left;
-        padding: 2rem;
-        background: #EEE;
-        margin-bottom: 3rem;
-    }
-    .a-review {
-        background: white;
-        padding: 1rem;
-    }
-    hr {
-        border-color: #DDD
-    }
+
 </style>

@@ -27,6 +27,8 @@
 /*  TODO: Add a "do you recomend this product" for the product form
     TODO: Add a form validation in the onSubmit method*/
 
+import EventBus from "@/EventBus"
+
 export default {
     name: 'product-review',
     data() {
@@ -43,7 +45,7 @@ export default {
                 review: this.review,
                 rating: this.rating,
             }
-            this.$emit('review-submitted', productReview)
+            EventBus.$emit('review-submitted', productReview)
             this.name = "Anonimus",
             this.review = "",
             this.rating = 1
